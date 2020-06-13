@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FIFO</title>
+	<meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+ <div class="navbar-header">
+  <a class="navbar-brand" href="#">OS simulator</a>
+   </div>
+  <ul class="nav navbar-nav">
+      <li class="active"><a href="index.html">Home</a></li>
+     <li class="active"><a href="#">Wiki</a></li>
+   </ul>
+  </div>
+</nav>
+<br><br><br>
+<div class="page-header" >
+   <h1 style="text-align:center;color:limegreen">PAGE REPLACEMENT ALGORITHM</h1>
+</div>
+<body  style="background-color:white">
+<h1 style="text-align:center;color:limegreen">FIFO</h1>
+<br>
+<form>
+    <div class"container">
+        <div class="form-group row" style="margin-left:40px;width:25vw;display:block">
+            <input type = "number" id="frames"class="form-control" placeholder="Enter the number of frames:">
+        </div>
+
+        <div class="form-group row" style="margin-left:40px;width:25vw;display:block">
+                <input type = "text" id="rs" class="form-control" placeholder="Enter the Reference string:">
+        </div>
+            <input type = "button" style="margin-left:40px; margin-bottom:20px" class="btn btn-success btn-lg" onclick = "fifo()" value = "Compute">
+		<div id="div" class="table-responsive" style="width:80vw;margin:auto;text-align:center"></div>
+		<div id="sp1"></div>
+		<div id="sp2"></div>
+    </div>
+</form>
+ </body>
+ <!-- <script type="text/javascript" src="index.js"></script> -->
+</html>
+
+<script>
+	var count=0;
+var pages = [];
+var pf;
+var ph;
+var f;
+var rs;
+var txt;
+function fifo()
+{
+ f = document.getElementById("frames").value;
+ rs=document.getElementById("rs").value;
+	rs=rs.split(' ');
+console.log(f);
+console.log(rs);
+var prev;
+ pf=0;
+ ph=0;
+var k=0;
+	var i,row=Number(f)+1,j,col=rs.length;
+
+	pages = new Array(row);
+	for(i=0;i<row;i++)
+		pages[i]=new Array(col);
+
+	for(i=0;i<row-1;i++)
+	{
+    for(j=0 ; j<col;j++)
+		pages[i][j]= "--";
+	}
+
+	for(j=0;j<col;j++)
+	{
+		var smallest=-1;
+		var flag=false;
+		if(j>0)
+		{
+		for(i=0;i<row-1;i++)
+			pages[i][j]=pages[i][j-1];
+		}
+		for(i=0;i<row-1;i++)
+		{
+			if(rs[k]==pages[i][j])
+			flag=true;
+		}
+		if(flag==false)
+		{
+			for(i=0;i<row-1;i++)
+			{
+				if(pages[i][j]== "--")
+				{
+					smallest=i;
+					break;
+				}
+			}
+			if(smallest!=-1)
+			{
+		    pages[smallest][j]=rs[k];
+			prev=(smallest+1)%(row-1);
+			}
+		    else
+			{
+				pages[prev][j]=rs[k];
+				prev=(prev+1)%(row-1);
+			}
+		pages[row-1][j]="PF";
+		k++;
+		pf++;
+		console.log("pf=",pf);
+        }
+		else
+        {
+        ph++;
+        k++;
+		console.log("ph=",ph);
+		pages[row-1][j]="PH";
+        }
+	}
+txt= " ";var real;var m=0;
+var $table=$("<table border='1'></table>");
+$table.addClass('table table-striped');
+$tbody = $("<tbody></tbody>");
+	for ( i=0; i<row;i++)
+	  {
+        var line =$("<tr></tr>");
+        // line.css({'background-color': getRandomColor()});
+	  	for(j=0; j<col;j++){
+
+        if(i==row-1) {
+
+
+                if(("PH".localeCompare(pages[i][j])==0)){
+					line.append('<td style="color:green">'+'PH'+'</td>');
+                }
+                else{
+					line.append('<td style="color:red">'+'PF'+'</td>');
+				}
+
+			$tbody.append(line);
+
+			}
+        else{
+            line.append($("<td></td>").html(pages[i][j]+""));
+            $tbody.append(line);
+        }
+
+
+          }
+        }
+
+      $table.append($tbody);
+	  $table.appendTo($("#div"));
+	  $("#sp1").html('<p style="text-align:center">'+"<b>The no of page faults is:</b>"+"   "+'<span style="color:red">'+pf+'</span>'+'</p>')
+	  $("#sp2").html('<p style="text-align:center">'+"<b>The no of page hits is:</b>"+"   "+'<span style="color:green">'+ph+'</span>'+'</p>')
+      function getRandomColor() {
+		m=m+1;
+		var color ='';
+		  if(m==1){
+			  color='blue';
+		  }
+		  if(m==2){
+			  color='yellow';
+		  }
+		  if(m==3){
+			  color='pink';
+		  }
+		  if(m==4){
+			  color='white';
+		  }
+
+		return color;
+		 }
+		 console.log(m);
+txt = txt + "\n";
+console.log(txt);
+console.log(txt.length);
+$('input[type="button"]').attr('disabled','disabled');
+}
+</script>

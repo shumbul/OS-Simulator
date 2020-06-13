@@ -1,0 +1,168 @@
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<style>
+
+			body{
+				font-family: "courier new", Times, serif;
+				background-color: white;
+			}
+
+			.button1 {
+			  border-radius: 4px;
+			  background-color: #ff652f;
+			  border: none;
+			  color: #FFFFFF;
+			  text-align: center;
+			  font-size: 28px;
+			  padding: 20px;
+			  width: 200px;
+			  transition: all 0.5s;
+			  cursor: pointer;
+			  margin: 5px;
+			}
+
+			.button1 span {
+			  cursor: pointer;
+			  display: inline-block;
+			  position: relative;
+			  transition: 0.5s;
+			}
+
+			.button1 span:after {
+			  content: '\00bb';
+			  position: absolute;
+			  opacity: 0;
+			  top: 0;
+			  right: -20px;
+			  transition: 0.5s;
+			}
+
+			.button1:hover span {
+
+			  padding-right: 25px;
+			}
+
+			.button1:hover{
+				background: linear-gradient(to right, #ff652f 16%, #ffe400 100%);
+			}
+			.button1:hover span:after {
+			  opacity: 1;
+			  right: 0;
+			}
+
+
+			/*=====2=========================== style 2 ========================================*/
+			.button2 {
+    position: relative;
+    font-size: 28px;
+    color: #FFFFFF;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.button2:after {
+    content: "";
+    background: #90EE90;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.9s
+}
+
+.button2:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s;
+    background-color: green;
+}
+
+.back{
+	background-color: green;
+	border-radius: 4px;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 28px;
+	padding: 20px;
+	width: 200px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+}
+
+.but1{
+
+	position:absolute;
+	margin-left:40%;
+	margin-top:5%;
+}
+
+.but2{
+
+	position:absolute;
+	margin-left:40%;
+	margin-top:20%;
+}
+
+		</style>
+
+	<body>
+		  <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+ <div class="navbar-header">
+  <a class="navbar-brand" href="./os_sim.html">OS simulator</a>
+   </div>
+  <ul class="nav navbar-nav">
+      <li class="active"><a href="../os_sim.html">Home</a></li>
+     <li class="active"><a href="../wiki-sample/deadlock.txt">Wiki</a></li>
+   </ul>
+  </div>
+</nav>
+<br><br>
+		<h1 style="text-align:center; color:#000000"> DEADLOCK </h1>
+
+		<button class="button1 button2 but1" onclick="change(0)"><span>BANKER</span></button>
+		<button class="button1 button2 but2" onclick="change(1)"><span>SINGLE INSTANCE </span></button>
+
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+	</body>
+
+	<script>
+		function change(but_num){
+			var bu = document.getElementsByTagName("button")[but_num];
+			bu.classList.add("back");
+			bu.classList.remove("button1");
+
+			if(but_num == 0)
+			{
+				window.location = "banker.html";
+			}
+
+			if(but_num == 1)
+			{
+				window.location = "deadlock.html";
+			}
+		}
+	</script>
+</html>

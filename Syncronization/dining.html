@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dining Philosopher</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body style="background-color:#FFE4B5;height:1500px">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">OS simulator</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="index.html">Home</a></li>
+      <li class="active"><a href="#">Wiki</a></li>
+    </ul>
+  </div>
+</nav>
+ <br><br><br>
+  <div class="page-header" style="background-color:#CCCC00;float:center">
+    <h1><marquee><b>Dining Philosopher's</b></marquee></h1>      
+  </div>
+
+
+     <div>
+      <form>
+        <textarea id="doc" style="height:250px;width:265px;position:absolute;left:7%;top:50%;font-size:17px;
+        color : black; background-color:#BDB76B;border:solid 2px black; " disabled="">
+ process P[i]
+ while true do
+   {  THINK;
+      PICKUP(FORK[i], FORK[i+1 mod 5]);
+      EAT;
+      PUTDOWN(FORK[i], FORK[i+1 mod 5])
+   }
+        </textarea>
+      </form>
+    </div>
+
+    <button type ="button", class = "btn btn-primary", onclick ="initiate()", style="height:70px;width:300px;position:absolute;top:20%;left:10%;border:solid 4px black;font-size:25px"  >Next!</button>
+
+    <button type = "button", id ="num", name = "num", class = "btn btn-primary", style="height:70px;width:300px;position:absolute;top:20%;left:75%;border:solid 4px black;font-size:17px">Number generated: </button>
+
+    <button type = "button", id ="table", name = "table", style="height:435px;width:435px;position:absolute;top:50%;left:35%;border-radius:435px;border:solid 4px black;border:1px solid #000;background-color:#CD853F"> </button>
+    <img src="food.png" alt="" style="position:absolute;left:41%;top:37%;width:250px;height:250px;">
+
+
+
+
+ -->
+<div style="position:absolute;top:50%;left:70%">
+
+<!-- <p>rvervboewovbuoewuvowrvuoe</p>
+ -->
+ <!-- <table  style="font-size:25px;width:100%"> -->
+ <table style="width:100%;padding:2px;padding-color:red" border="2px" >
+  <tr  style="background-color: black; color:white;	">
+    <th width="120px" height="50px" style="text-align: center;">Philosopher  </th>
+    <th width="120px" height="50px" style="text-align: center;">Thinking</th> 
+    <th width="120px" height="50px" style="text-align: center;">Hungry</th>
+    <th width="120px" height="50px" style="text-align: center;">Eating  </th>
+  </tr>
+  <tr style="background-color: #E0E0E0	">
+    <td width="120px" height="30px" style="text-align: center;">1</td>
+    <td width="120px" height="30px" style="text-align: center;" id="t11">Yes</td>
+    <td width="120px" height="30px" style="text-align: center;" id="t12">-</td>
+    <td width="120px" height="30px" style="text-align: center;"  id="t13">-</td>
+
+  </tr>
+  <tr>
+    <td width="120px" height="30px" style="text-align: center;">2</td>
+    <td  width="120px" height="30px" style="text-align: center;" id="t21">Yes</td>
+    <td  width="120px" height="30px" style="text-align: center;" id="t22">-</td>
+    <td   width="120px" height="30px" style="text-align: center;" id="t23">-</td>
+
+  </tr>
+  <tr  style="background-color: #E0E0E0	">
+    <td width="120px" height="30px" style="text-align: center;">3</td>
+    <td id="t31" width="120px" height="30px" style="text-align: center;">Yes</td>
+    <td id="t32" width="120px" height="30px" style="text-align: center;">-</td>
+    <td id="t33" width="120px" height="30px" style="text-align: center;">-</td>
+
+  </tr>
+  <tr >
+    <td width="120px" height="30px" style="text-align: center;">4</td>
+    <td id="t41" width="120px" height="30px" style="text-align: center;">Yes</td>
+    <td id="t42" width="120px" height="30px" style="text-align: center;">-</td>
+    <td id="t43" width="120px" height="30px" style="text-align: center;">-</td>
+
+  </tr>
+  <tr  style="background-color: #E0E0E0	">
+    <td width="120px" height="30px" style="text-align: center;">5</td>
+    <td id="t51" width="120px" height="30px" style="text-align: center;">Yes</td>
+    <td  id="t52" width="120px" height="30px" style="text-align: center;">-</td>
+    <td id="t53" width="120px" height="30px" style="text-align: center;">-</td>
+
+  </tr>
+  
+</table>
+ 	
+
+ </div>
+
+   		<p style="position:absolute;top:37%;left:41%;">Philosopher 1</p>
+    	<p style="position:absolute;top:62%;left:29%;">Philosopher 5</p>
+        <p style="position:absolute;top:48%;left:56.5%;">Philosopher 2</p>
+        <p style="position:absolute;top:106%;left:38%;">Philosopher 4</p>
+        <p style="position:absolute;top:96%;left:56%;">Philosopher 3</p>
+
+    <button type = "button", id ="one", name = "one", style="height:125px;width:125px;position:absolute;top:39%;left:40%;border-radius:125px;border:1px solid #000;  background-image: url('http://icons.iconarchive.com/icons/designbolts/free-male-avatars/128/Male-Avatar-icon.png')">  </button>
+   
+
+   
+    <button type = "button", id ="five", name = "one", style="height:125px;width:125px;position:absolute;top:65%;left:29%;border-radius:125px;border:1px solid #000; background-image: url('http://icons.iconarchive.com/icons/designbolts/free-male-avatars/128/Male-Avatar-Bowler-Hat-icon.png')"> </button>
+   
+    <button type = "button", id ="two", name = "one", style="height:125px;width:125px;position:absolute;top:50%;left:55.5%;border-radius:125px;border:1px solid #000;background-image: url('http://icons.iconarchive.com/icons/designbolts/free-male-avatars/128/Male-Avatar-Goatee-Beard-icon.png')">   </button>
+   
+    <button type = "button", id ="four", name = "one", style="height:125px;width:125px;position:absolute;top:92%;left:37%;border-radius:125px;border:1px solid #000;background-image: url('http://icons.iconarchive.com/icons/designbolts/free-male-avatars/128/Male-Avatar-Emo-Haircut-icon.png')">  </button>
+   
+    <button type = "button", id ="three", name = "one", style="height:125px;width:125px;position:absolute;top:83%;left:55%;border-radius:125px;border:1px solid #000;background-image: url('http://icons.iconarchive.com/icons/designbolts/free-male-avatars/128/Male-Avatar-Hair-icon.png')">  </button>
+
+   
+  <img src="http://icons.iconarchive.com/icons/cute-little-factory/breakfast/128/sugar-bowl-filled-icon.png" style="position: absolute;height: 100px;width: 100px; top: 51%;left:42%;visibility: hidden;"  id="bowl1">
+  <img src="http://icons.iconarchive.com/icons/cute-little-factory/breakfast/128/sugar-bowl-filled-icon.png" style="position: absolute;height: 100px;width: 100px; top: 66%;left:36.6%;visibility: hidden;" id="bowl5">
+  <img src="http://icons.iconarchive.com/icons/cute-little-factory/breakfast/128/sugar-bowl-filled-icon.png" style="position: absolute;height: 100px;width: 100px; top: 58%;left:51%;visibility: hidden;"  id="bowl2">
+  <img src="http://icons.iconarchive.com/icons/cute-little-factory/breakfast/128/sugar-bowl-filled-icon.png" style="position: absolute;height: 100px;width: 100px; top: 82%;left:41%;visibility: hidden;" id="bowl4">
+  <img src="http://icons.iconarchive.com/icons/cute-little-factory/breakfast/128/sugar-bowl-filled-icon.png" style="position: absolute;height: 100px;width: 100px; top: 77%;left:51%;visibility: hidden;" id="bowl3">
+
+
+
+
+
+    <button type = "button", id ="first", name = "one", style="height:50px;width:50px;position:absolute;top:59%;left:38%;border-radius:50px;border:2px solid #000;background-image: url('http://icons.iconarchive.com/icons/icons8/windows-8/32/Food-Fork-icon.png') ; background-repeat: no-repeat;">  </button>
+   
+    <button type = "button", id ="second", name = "one", style="height:50px;width:50px;position:absolute;top:54%;left:49%;border-radius:50px;border:2px solid #333;background-image: url('http://icons.iconarchive.com/icons/icons8/windows-8/32/Food-Fork-icon.png') ; background-repeat: no-repeat;"> </button>
+   
+    <button type = "button", id ="third", name = "one", style="height:50px;width:50px;position:absolute;top:70%;left:55%;border-radius:50px;border:2px solid #000;background-image: url('http://icons.iconarchive.com/icons/icons8/windows-8/32/Food-Fork-icon.png') ; background-repeat: no-repeat;"></button>
+   
+    <button type = "button", id ="fifth", name = "one", style="height:50px;width:50px;position:absolute;top:79%;left:38%;border-radius:50px;border:2px solid #000;background-image: url('http://icons.iconarchive.com/icons/icons8/windows-8/32/Food-Fork-icon.png') ; background-repeat: no-repeat;"> </button>
+   
+    <button type = "button", id ="fourth", name = "one", style="height:50px;width:50px;position:absolute;top:88%;left:48%;border-radius:50px;border:2px solid #000;background-image: url('http://icons.iconarchive.com/icons/icons8/windows-8/32/Food-Fork-icon.png') ; background-repeat: no-repeat;">  </button>
+
+      <img src="http://icons.iconarchive.com/icons/cute-little-factory/breakfast/128/sugar-bowl-filled-icon.png" style="position: absolute;height: 100px;width: 100px; top: 66%;left:44.5%">
+
+
+  <script type = "text/javascript">
+      var phils= [0,0,0,0,0], forks=[0,0,0,0,0];
+     
+      function initiate()
+      {
+          var num = Math.random();
+          var n = Math.floor(num*5);
+
+          if(n==0)
+          {
+            var change = document.getElementById("num");
+            change.innerHTML ="Chance given to:Philospher 1"
+
+          }
+          if(n==1)
+          {
+            var change = document.getElementById("num");
+            change.innerHTML ="Chance given to:Philospher 2"
+          }
+          if(n==2)
+          {
+            var change = document.getElementById("num");
+            change.innerHTML ="Chance given to:Philospher 3"
+          }
+          if(n==3)
+          {
+            var change = document.getElementById("num");
+            change.innerHTML ="Chance given to:Philospher 4"
+          }
+          if(n==4)
+          {
+            var change = document.getElementById("num");
+            change.innerHTML ="Chance given to:Philospher 5"
+          }
+
+		          if(phils[n]==0)
+		          { 
+		                phils[n]=1;
+				           if(n==0)
+				          {
+				            var change12 = document.getElementById("t12");
+				            change12.innerHTML ="Yes"
+				            var change11=document.getElementById("t11");
+				            change11.innerHTML="-";	
+				            var change13=document.getElementById("t13");
+				            change13.innerHTML="-";	
+				          }
+				          if(n==1)
+				          {
+				            var change22 = document.getElementById("t22");
+				            change22.innerHTML ="Yes";
+				             var change21=document.getElementById("t21");
+				            change21.innerHTML="-";	
+				            var change23=document.getElementById("t23");
+				            change23.innerHTML="-";	
+				          }
+				          if(n==2)
+				          {
+				            var change32 = document.getElementById("t32");
+				            change32.innerHTML ="Yes";
+				             var change31=document.getElementById("t31");
+				            change31.innerHTML="-";	
+				            var change33=document.getElementById("t33");
+				            change33.innerHTML="-";	
+				          }
+				          if(n==3)
+				          {
+				            var change42 = document.getElementById("t42");
+				            change42.innerHTML ="Yes";
+
+				             var change41=document.getElementById("t41");
+				             change41.innerHTML="-";	
+				            
+				            var change43=document.getElementById("t43");
+				            change43.innerHTML="-";	
+				          }
+				          if(n==4)
+				          {
+				            var change52 = document.getElementById("t52");
+				            change52.innerHTML ="Yes";
+
+				             var change51=document.getElementById("t51");
+				             change51.innerHTML="-";	
+				            
+				            var change53=document.getElementById("t53");
+				            change53.innerHTML="-";
+				          }
+		          }
+
+		          else if(phils[n]==1)
+		          {           
+
+		            if(forks[n]==0 && forks[(n+1)%5]==0)
+		            {
+		              phils[n]=2;
+		              forks[n]=1;
+		              forks[(n+1)%5]=1;
+
+
+		              
+
+		                 if(n==0)
+				          {
+				           document.getElementById('bowl1').style.visibility='visible'; 
+				            var change12 = document.getElementById("t12");
+				            change12.innerHTML ="-"
+				            var change11=document.getElementById("t11");
+				            change11.innerHTML="-";	
+				            var change13=document.getElementById("t13");
+				            change13.innerHTML="Yes";	
+				          }
+				          if(n==1)
+				          {
+							 document.getElementById('bowl2').style.visibility='visible';
+				            var change22 = document.getElementById("t22");
+				            change22.innerHTML ="-";
+				             var change21=document.getElementById("t21");
+				            change21.innerHTML="-";	
+				            var change23=document.getElementById("t23");
+				            change23.innerHTML="Yes";	
+				          }
+				          if(n==2)
+				          {
+ 							document.getElementById('bowl3').style.visibility='visible';
+				            var change32 = document.getElementById("t32");
+				            change32.innerHTML ="-";
+				             var change31=document.getElementById("t31");
+				            change31.innerHTML="-";	
+				            var change33=document.getElementById("t33");
+				            change33.innerHTML="Yes";	
+				          }
+				          if(n==3)
+				          {
+				          	document.getElementById("bowl4").style.visibility = "visible"; 
+
+				            var change42 = document.getElementById("t42");
+				            change42.innerHTML ="-";
+
+				             var change41=document.getElementById("t41");
+				             change41.innerHTML="-";	
+				            
+				            var change43=document.getElementById("t43");
+				            change43.innerHTML="Yes";	
+				          }
+				          if(n==4)
+				          {
+				          	document.getElementById("bowl5").style.visibility= "visible"; 
+
+				            var change52 = document.getElementById("t52");
+				            change52.innerHTML ="-";
+
+				             var change51=document.getElementById("t51");
+				             change51.innerHTML="-";	
+				            
+				            var change53=document.getElementById("t53");
+				            change53.innerHTML="Yes";
+				          }
+
+		            }
+		            else
+		            {  k=n+1;
+		              alert("Philosopher "+k+" can't start eating now!");		            }
+
+		        }
+
+
+		          else if(phils[n]==2)
+		          {
+		            phils[n]=0;
+		            forks[n]=0;
+		            forks[(n+1)%5]=0;
+
+		            		if(n==0)
+					        {
+					     
+					       	document.getElementById("bowl1").style.visibility = 'hidden'; 
+				            var change12 = document.getElementById("t12");
+				            change12.innerHTML ="-"
+				            var change11=document.getElementById("t11");
+				            change11.innerHTML="Yes";	
+				            var change13=document.getElementById("t13");
+				            change13.innerHTML="-";	
+				          }
+				          if(n==1)
+				          {
+				          	document.getElementById("bowl2").style.visibility = 'hidden'; 
+				            var change22 = document.getElementById("t22");
+				            change22.innerHTML ="-";
+				             var change21=document.getElementById("t21");
+				            change21.innerHTML="Yes";	
+				            var change23=document.getElementById("t23");
+				            change23.innerHTML="-";	
+				          }
+				          if(n==2)
+				          {
+				          	document.getElementById("bowl3").style.visibility= 'hidden'
+				           var change32=document.getElementById("t32");
+				              change32.innerHTML ="-";
+				             var change31=document.getElementById("t31");
+				            change31.innerHTML="Yes";	
+				            var change33=document.getElementById("t33");
+				            change33.innerHTML="-";	
+				          }
+				          if(n==3)
+				          {
+				          	document.getElementById("bowl4").style.visibility='hidden'; 
+				            var change42 = document.getElementById("t42");
+				            change42.innerHTML ="-";
+
+				             var change41=document.getElementById("t41");
+				             change41.innerHTML="Yes";	
+				            
+				            var change43=document.getElementById("t43");
+				            change43.innerHTML="-";	
+				          }
+				          if(n==4)
+				          {
+				          	document.getElementById("bowl5").style.visibility= 'hidden'; 
+				            var change52 = document.getElementById("t52");
+				            change52.innerHTML ="-";
+
+				             var change51=document.getElementById("t51");
+				             change51.innerHTML="Yes";	
+				            
+				            var change53=document.getElementById("t53");
+				            change53.innerHTML="-";
+				          }
+
+				       }
+		          
+		          if(phils[0]==0)
+		          {
+		            document.getElementById("one").style.backgroundColor = '#DCDCDC';
+		          }
+		          if(phils[1]==0)
+		          {
+		            document.getElementById("two").style.backgroundColor = '#DCDCDC';
+		          }
+		          if(phils[2]==0)
+		          {
+		            document.getElementById("three").style.backgroundColor = '#DCDCDC';
+		          }
+		          if(phils[3]==0)
+		          {
+		            document.getElementById("four").style.backgroundColor = '#DCDCDC';
+		          }
+		          if(phils[4]==0)
+		          {
+		            document.getElementById("five").style.backgroundColor = '#DCDCDC';
+		          }
+
+
+
+		          if(phils[0]==1)
+		          {
+		            document.getElementById("one").style.backgroundColor = '#FFFF00';
+		          }
+		          if(phils[1]==1)
+		          {
+		            document.getElementById("two").style.backgroundColor = '#FFFF00';
+		          }
+		          if(phils[2]==1)
+		          {
+		            document.getElementById("three").style.backgroundColor = '#FFFF00';
+		          }
+		          if(phils[3]==1)
+		          {
+		            document.getElementById("four").style.backgroundColor = '#FFFF00';
+		          }
+		          if(phils[4]==1)
+		          {
+		            document.getElementById("five").style.backgroundColor = '#FFFF00';
+		          }
+
+		          if(phils[0]==2)
+		          {
+		            document.getElementById("one").style.backgroundColor = '#FF0000';
+		          }
+		          if(phils[1]==2)
+		          {
+		            document.getElementById("two").style.backgroundColor = '#FF0000';
+		          }
+		          if(phils[2]==2)
+		          {
+		            document.getElementById("three").style.backgroundColor = '#FF0000';
+		          }
+		          if(phils[3]==2)
+		          {
+		            document.getElementById("four").style.backgroundColor = '#FF0000';
+		          }
+		          if(phils[4]==2)
+		          {
+		            document.getElementById("five").style.backgroundColor = '#FF0000';
+		          }
+
+		          if(forks[0]==0)
+		          {
+		            document.getElementById("first").style.backgroundColor = '#DCDCDC';
+		          }
+		          if(forks[1]==0)
+		          {
+		            document.getElementById("second").style.backgroundColor = '#DCDCDC';
+		          }
+		          if(forks[2]==0)
+		          {
+		            document.getElementById("third").style.backgroundColor = '#DCDCDC';
+		          }
+		          if(forks[3]==0)
+		          {
+		            document.getElementById("fourth").style.backgroundColor = '#DCDCDC';
+		          }
+		          if(forks[4]==0)
+		          {
+		            document.getElementById("fifth").style.backgroundColor = '#DCDCDC';
+		          }
+
+
+
+		          if(forks[0]==1)
+		          {
+		            document.getElementById("first").style.backgroundColor = '#FF0000';
+		          }
+		          if(forks[1]==1)
+		          {
+		            document.getElementById("second").style.backgroundColor = '#FF0000';
+		          }
+		          if(forks[2]==1)
+		          {
+		            document.getElementById("third").style.backgroundColor = '#FF0000';
+		          }
+		          if(forks[3]==1)
+		          {
+		            document.getElementById("fourth").style.backgroundColor = '#FF0000';
+		          }
+		          if(forks[4]==1)
+		          {
+		            document.getElementById("fifth").style.backgroundColor = '#FF0000';
+		          }
+      
+  }
+    </script>
+
+
+   		
+
+</body>
+</html>

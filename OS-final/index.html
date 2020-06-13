@@ -1,0 +1,254 @@
+<html>
+	<head>
+	</head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<style>
+
+			body{
+
+
+			}
+
+			.button1 {
+			  border-radius: 4px;
+			  background-color: #ff652f;
+			  border: none;
+			  color: #FFFFFF;
+			  text-align: center;
+			  font-size: 28px;
+			  padding: 20px;
+			  width: 200px;
+			  transition: all 0.5s;
+			  cursor: pointer;
+			  margin: 5px;
+			}
+
+			.button1 span {
+			  cursor: pointer;
+			  display: inline-block;
+			  position: relative;
+			  transition: 0.5s;
+			}
+
+			.button1 span:after {
+			  content: '\00bb';
+			  position: absolute;
+			  opacity: 0;
+			  top: 0;
+			  right: -20px;
+			  transition: 0.5s;
+			}
+
+			.button1:hover span {
+
+			  padding-right: 25px;
+			}
+
+			.button1:hover{
+				background: linear-gradient(to right, #ff652f 16%, #ffe400 100%);
+			}
+			.button1:hover span:after {
+			  opacity: 1;
+			  right: 0;
+			}
+
+
+			/*=====2=========================== style 2 ========================================*/
+			.button2 {
+    position: relative;
+    font-size: 28px;
+    color: #FFFFFF;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.button2:after {
+    content: "";
+    background: #90EE90;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.9s
+}
+
+.button2:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s;
+    background-color: green;
+}
+
+.back{
+	background-color: green;
+	border-radius: 4px;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 28px;
+	padding: 20px;
+	width: 200px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+}
+
+.but1{
+
+	position:absolute;
+	margin-top:2px;
+}
+
+.but2{
+
+	position:absolute;
+	margin-top:7%;
+}
+
+.but3{
+	position:absolute;
+
+	margin-top:14%;
+}
+
+
+.but4{
+
+	position:absolute;
+	margin-top:21%;
+}
+
+.but5{
+
+	position:absolute;
+
+	margin-top:28%;
+}
+
+.but6{
+	position: absolute;
+
+	margin-top: 5%;
+}
+
+.but7{
+
+	position:absolute;
+
+	margin-top:14%;
+}
+
+.but8{
+	position:absolute;
+
+	margin-top:23%;
+}
+
+
+.but9{
+
+	position:absolute;
+
+	margin-top:35%;
+}
+.c{
+	margin-left: 42%;
+}
+		</style>
+
+	<body>
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+					<div class="container-fluid">
+				   <div class="navbar-header">
+					<a class="navbar-brand" href="#">OS simulator</a>
+					 </div>
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="../os_sim.html">Home</a></li>
+					 </ul>
+					</div>
+				  </nav>
+				  <br><br><br>
+				  <div class="page-header" >
+ <h1 style="text-align: center;color:black">PAGE REPLACEMENT
+	 <!-- <span style="text-align:center;color:black;position:absolute;margin-left:33%">PAGING</span></h1>  -->
+
+				  </div>
+				  <body>
+
+				  <br>
+
+<div class="c">
+		<button class="button1 button2 but1" onclick="change(0)"><span>FIFO </span></button>
+		<button class="button1 button2 but2" onclick="change(1)"><span>LRU </span></button>
+		<button class="button1 button2 but3" onclick="change(2)"><span>ALL </span></button>
+		<button class="button1 button2 but4" onclick="change(3)"><span>OPTIMAL </span></button>
+		<button class="button1 button2 but5" onclick="change(4)"><span>BELADY </span></button>
+	<!-- 	<button class="button1 button2 but6" onclick="change(5)"><span>PAGING </span></button>
+		<button class="button1 button2 but7" onclick="change(6)"><span>MULTI </span></button>
+		<button class="button1 button2 but8" onclick="change(7)"><span>OPTI-SIZE </span></button>
+		 -->
+		<button class="button1 button2 but9" onclick="change(5)"><span>SECOND</span></button>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+	</body>
+
+	<script>
+		function change(but_num){
+			var bu = document.getElementsByTagName("button")[but_num];
+			bu.classList.add("back");
+			bu.classList.remove("button1");
+
+			if(but_num == 0)
+			{
+				window.location = "fifo.html";
+			}
+
+			if(but_num == 1)
+			{
+				window.location = "lru.html";
+			}
+
+			if(but_num == 2)
+			{
+				window.location = "all.html";
+			}
+
+			if(but_num == 3)
+			{
+				window.location = "optimal.html";
+			}
+
+			if(but_num == 4)
+			{
+				window.location = "belady.html";
+			}
+			// if(but_num == 5)
+			// {
+			// 	window.location = "paging.html";
+			// }
+			// if(but_num == 6)
+			// {
+			// 	window.location = "mlp.html";
+			// }
+			// if(but_num == 7)
+			// {
+			// 	window.location = "ops.html";
+			// }
+			if(but_num == 5)
+			{
+				window.location = "sc.html";
+			}
+		}
+	</script>
+</html>

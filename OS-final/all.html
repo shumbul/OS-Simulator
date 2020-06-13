@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html>
+	<head>
+			<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+			<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/typed.js/1.1.4/typed.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+
+<body  style="background-color:white">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+	   <div class="navbar-header">
+		<a class="navbar-brand" href="#">OS simulator</a>
+		 </div>
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="index.html">Home</a></li>
+		   <li class="active"><a href="#">Wiki</a></li>
+		 </ul>
+		</div>
+	  </nav>
+	  <br><br><br>
+	  <div class="page-header" >
+		 <h1 style="text-align:center;color:limegreen">COMPARISON OF  ALGORITHMS</h1>
+
+	  </div>
+	  <body>
+			<h1 style="text-align:center;color:limegreen"> PAGE-REPLACEMENT</h1>
+	  <br>
+
+<!--modal-->
+
+<!-- Modal -->
+<div id="tutorSignupModal" class="modal fade" style="display: none;">
+		<div class="modal-dialog modal-login">
+		  <div class="modal-content">
+			<!-- ========================================== -->
+			<div id="chartContainer" style="width:50vw;">
+				</div>
+			</div>
+			<!-- ========================================== -->
+
+
+
+
+
+			</div>
+		  </div>
+		</div>
+		</div>
+		<form>
+				<div class="container">
+
+					<div class="form-group row" style="margin-left:40px;width:25vw;display:block">
+						<input type = "number" id="frames"class="form-control" placeholder="Enter the number of frames:">
+					</div>
+
+					<div class="form-group row" style="margin-left:40px;width:25vw;display:block">
+							<input type = "text" id="rs" class="form-control" placeholder="Enter the Reference string:">
+					</div>
+						<input type = "button" style="margin-left:40px; margin-bottom:20px" class="btn btn-success btn-lg" onclick = "comaprison()" value = "Compute">
+						<a href="#tutorSignupModal" class="btn btn-success btn-lg" style="margin-left:40px; margin-bottom:20px" value = "Graph" data-toggle="modal" style="text-decoration:none;">Graph</a>
+					<div id="div" class="table-responsive" style="width:80vw;margin:auto;text-align:center;"></div>
+
+				</div>
+
+
+
+		</form>
+
+</body>
+
+<script>
+
+		function comaprison()
+{
+var count=0;
+var pages = [];
+var pf;
+var ph;
+var f;
+var rs;
+var txt;
+ f = document.getElementById("frames").value;
+ rs=document.getElementById("rs").value;
+ rs = rs.split(' ');
+console.log(f);
+console.log(rs);
+var prev;
+ pf1=0;pf2=0;pf3=0;
+ ph=0;
+var k=0;
+	var i,row=Number(f)+1,j,col=rs.length;
+
+	pages = new Array(row);
+	for(i=0;i<row;i++)
+		pages[i]=new Array(col);
+
+	for(i=0;i<row-1;i++)
+	{
+    for(j=0 ; j<col;j++)
+		pages[i][j]= "--";
+	}
+
+	for(j=0;j<col;j++)
+	{
+		var smallest=-1;
+		var flag=false;
+		if(j>0)
+		{
+		for(i=0;i<row-1;i++)
+			pages[i][j]=pages[i][j-1];
+		}
+		for(i=0;i<row-1;i++)
+		{
+			if(rs[k]==pages[i][j])
+			flag=true;
+		}
+		if(flag==false)
+		{
+			for(i=0;i<row-1;i++)
+			{
+				if(pages[i][j]== "--")
+				{
+					smallest=i;
+					break;
+				}
+			}
+			if(smallest!=-1)
+			{
+		    pages[smallest][j]=rs[k];
+			prev=(smallest+1)%(row-1);
+			}
+		    else
+			{
+				pages[prev][j]=rs[k];
+				prev=(prev+1)%(row-1);
+			}
+		pages[row-1][j]="PF";
+		k++;
+		pf1++;
+		console.log("pf=",pf1);
+        }
+		else
+        {
+        ph++;
+        k++;
+		console.log("ph=",ph);
+		pages[row-1][j]="PH";
+        }
+	}
+	txt= " ";var real;var m=0;
+	var $table=$("<table border='1'></table>");
+	$table.addClass('table table-striped');
+	$tbody = $("<tbody></tbody>");
+		for ( i=0; i<row;i++)
+		  {
+			var line =$("<tr></tr>");
+			// line.css({'background-color': getRandomColor()});
+			  for(j=0; j<col;j++){
+
+			if(i==row-1) {
+
+
+					if(("PH".localeCompare(pages[i][j])==0)){
+						line.append('<td style="color:green">'+'PH'+'</td>');
+					}
+					else{
+						line.append('<td style="color:red">'+'PF'+'</td>');
+					}
+
+				$tbody.append(line);
+
+				}
+			else{
+				line.append($("<td></td>").html(pages[i][j]+""));
+				$tbody.append(line);
+			}
+
+
+			  }
+			}
+		  for(i=0;i<1;i++)
+		  {
+		  $table.append('<caption style="text-align:center;color:black;text-decoration:underline">'+"<b>FIFO TABLE</b>"+'</caption>');
+			$table.append($tbody);
+			$table.appendTo($("#div"));
+			$("#div").append('<p style="text-align:center">'+"<b>The no of page faults is:</b>"+"   "+'<span style="color:red">'+pf1+'</span>'+'</p>');
+			$("#div").append('<p style="text-align:center">'+"<b>The no of page hits is:</b>"+"   "+'<span style="color:green">'+ph+'</span>'+'</p>')
+		  }
+
+		  function getRandomColor() {
+			m=m+1;
+			var color ='';
+			  if(m==1){
+				  color='blue';
+			  }
+			  if(m==2){
+				  color='yellow';
+			  }
+			  if(m==3){
+				  color='pink';
+			  }
+			  if(m==4){
+				  color='white';
+			  }
+
+			return color;
+			 }
+			 console.log(m);
+txt = txt + "\n";
+console.log(txt);
+//document.getElementById("answer").innerHTML=txt;
+pf=0;
+ ph=0;
+ k=0;
+var l;
+var farthest;
+var index=-9999;
+for(i=0;i<row-1;i++)
+	{
+    for(j=0 ; j<col;j++)
+		pages[i][j]= "--";
+	}
+
+	for(j=0;j<col;j++)
+	{
+		var smallest=-1;
+		var flag=false;
+		if(j>0)
+		{
+		for(i=0;i<row-1;i++)
+			pages[i][j]=pages[i][j-1];
+		}
+		for(i=0;i<row-1;i++)
+		{
+			if(rs[k]==pages[i][j])
+			flag=true;
+		}
+		if(flag==false)
+		{
+			for(i=0;i<row-1;i++)
+			{
+				if(pages[i][j]== "--")
+				{
+					smallest=i;
+					break;
+				}
+			}
+			if(smallest!=-1)
+			{
+		    pages[smallest][j]=rs[k];
+			}
+		    else
+			{
+				index=-9999;
+			  for(i=0;i<row-1;i++)
+			  {
+			  	for(l=j+1;l<col;l++)
+			  	{
+			  		if(pages[i][j]==rs[l])
+			  		{
+			  			farthest = l;
+			  			break;
+			  		}
+			  		else
+			  			farthest = -2;
+			  	}
+			  	if(index < farthest)
+			  		index = farthest;
+			  	if(farthest == -2)
+			  		break;
+			  }
+			  if(farthest!=-2)
+			  {
+			  for(i=0;i<row-1;i++)
+			  {
+			  	if(pages[i][j]==rs[index])
+			  		break;
+			  }
+			  }
+			  pages[i][j] = rs[k];
+			}
+		pages[row-1][j]="PF";
+		k++;
+		pf2++;
+		console.log("pf=",pf2);
+        }
+		else
+        {
+        ph++;
+        k++;
+		console.log("ph=",ph);
+		pages[row-1][j]="PH";
+        }
+	}
+	txt= " ";var real;var m=0;
+	var $table=$("<table border='1' style='float:right'></table>");
+	$table.addClass('table table-striped');
+	$tbody = $("<tbody></tbody>");
+		for ( i=0; i<row;i++)
+		  {
+			var line =$("<tr></tr>");
+			// line.css({'background-color': getRandomColor()});
+			  for(j=0; j<col;j++){
+
+			if(i==row-1) {
+
+
+					if(("PH".localeCompare(pages[i][j])==0)){
+						line.append('<td style="color:green">'+'PH'+'</td>');
+					}
+					else{
+						line.append('<td style="color:red">'+'PF'+'</td>');
+					}
+
+				$tbody.append(line);
+
+				}
+			else{
+				line.append($("<td></td>").html(pages[i][j]+""));
+				$tbody.append(line);
+			}
+
+
+			  }
+			}
+
+			for(i=0;i<1;i++)
+			{
+				$table.append('<caption style="text-align:center;color:black;text-decoration:underline">'+"<b>OPTIMAL TABLE</b>"+'</caption>');
+			  $table.append($tbody);
+			  $table.appendTo($("#div"));
+			  $("#div").append('<p style="text-align:center">'+"<b>The no of page faults is:</b>"+"   "+'<span style="color:red">'+pf2+'</span>'+'</p>');
+			  $("#div").append('<p style="text-align:center">'+"<b>The no of page hits is:</b>"+"   "+'<span style="color:green">'+ph+'</span>'+'</p>')
+			}
+		  function getRandomColor() {
+			m=m+1;
+			var color ='';
+			  if(m==1){
+				  color='blue';
+			  }
+			  if(m==2){
+				  color='yellow';
+			  }
+			  if(m==3){
+				  color='pink';
+			  }
+			  if(m==4){
+				  color='white';
+			  }
+
+			return color;
+			 }
+			 console.log(m);
+txt = txt + "\n";
+console.log(txt);
+//document.getElementById("answer").innerHTML=txt;
+ pf=0;
+ ph=0;
+var k=0;
+var least;
+
+var ref = [];
+ref = new Array(row-1);
+	for(i=0;i<row-1;i++)
+	{
+    for(j=0 ; j<col;j++)
+		pages[i][j]= "--";
+	}
+
+	for(j=0;j<col;j++)
+	{
+		var smallest=-1;
+		var flag=false;
+		if(j>0)
+		{
+		for(i=0;i<row-1;i++)
+			pages[i][j]=pages[i][j-1];
+		}
+		for(i=0;i<row-1;i++)
+		{
+			if(rs[k]==pages[i][j])
+			flag=true;
+		}
+		if(flag==false)
+		{
+			for(i=0;i<row-1;i++)
+			{
+				if(pages[i][j]== "--")
+				{
+					smallest=i;
+					break;
+				}
+			}
+			if(smallest!=-1)
+			{
+		    pages[smallest][j]=rs[k];
+			}
+		    else
+			{
+				index=9999;
+			  for(i=0;i<row-1;i++)
+			  {
+			  	for(l=j-1;l>=0;l--)
+			  	{
+			  		if(pages[i][j]==rs[l])
+			  		{
+			  			least = l;
+			  			break;
+			  		}
+
+			  	}
+			  	if(index > least)
+			  		index = least;
+
+			  }
+
+			  for(i=0;i<row-1;i++)
+			  {
+			  	if(pages[i][j]==rs[index])
+			  		break;
+			  }
+
+			  pages[i][j] = rs[k];
+			}
+		pages[row-1][j]="PF";
+		k++;
+		pf3++;
+		console.log("pf=",pf3);
+        }
+		else
+        {
+        ph++;
+        k++;
+		console.log("ph=",ph);
+		pages[row-1][j]="PH";
+        }
+	}
+	txt= " ";var real;var m=0;
+	var $table=$("<table border='1'></table>");
+	$table.addClass('table table-striped');
+	$tbody = $("<tbody></tbody>");
+		for ( i=0; i<row;i++)
+		  {
+			var line =$("<tr></tr>");
+			// line.css({'background-color': getRandomColor()});
+			  for(j=0; j<col;j++){
+
+			if(i==row-1) {
+
+
+					if(("PH".localeCompare(pages[i][j])==0)){
+						line.append('<td style="color:green">'+'PH'+'</td>');
+					}
+					else{
+						line.append('<td style="color:red">'+'PF'+'</td>');
+					}
+
+				$tbody.append(line);
+
+				}
+			else{
+				line.append($("<td></td>").html(pages[i][j]+""));
+				$tbody.append(line);
+			}
+
+
+			  }
+			}
+
+			for(i=0;i<1;i++)
+			{
+				$table.append('<caption style="text-align:center;color:black;text-decoration:underline">'+"<b>LRU TABLE</b>"+'</caption>');
+			  $table.append($tbody);
+			  $table.appendTo($("#div"));
+			  $("#div").append('<p style="text-align:center">'+"<b>The no of page faults is:</b>"+"   "+'<span style="color:red">'+pf3+'</span>'+'</p>');
+			  $("#div").append('<p style="text-align:center">'+"<b>The no of page hits is:</b>"+"   "+'<span style="color:green">'+ph+'</span>'+'</p>')
+			}
+		  function getRandomColor() {
+			m=m+1;
+			var color ='';
+			  if(m==1){
+				  color='blue';
+			  }
+			  if(m==2){
+				  color='yellow';
+			  }
+			  if(m==3){
+				  color='pink';
+			  }
+			  if(m==4){
+				  color='white';
+			  }
+
+			return color;
+			 }
+			 console.log(m);
+txt = txt + "\n";
+//second chance goes here
+pf4=0;
+ph=0;
+var k=0;
+var n=0;
+
+	for(i=0;i<row-1;i++)
+	{
+    for(j=0 ; j<col;j++)
+		pages[i][j]= "--";
+	}
+
+	for(j=0;j<col;j++)
+	{
+		var smallest=-1;
+		var flag=false;
+		n=0;
+		if(j>0)
+		{
+		for(i=0;i<row-1;i++)
+			pages[i][j]=pages[i][j-1];
+		}
+		for(i=0;i<row-1;i++)
+		{
+			if(rs[k]==pages[i][j])
+			{
+			flag=true;
+			break;
+		    }
+		}
+		if(flag==false)
+		{
+			for(i=0;i<row-1;i++)
+			{
+				if(pages[i][j]== "--")
+				{
+					smallest=i;
+					break;
+				}
+			}
+			if(smallest!=-1)
+			{
+		    pages[smallest][j]=rs[k];
+			prev=(smallest+1)%(row-1);
+			ref[smallest] = 0;
+			}
+		    else
+			{
+				for(i=prev;n!=(row-1);)
+				{
+					if(ref[i]==1)
+					{
+						prev=(prev+1)%(row-1);
+						i=(i+1)%(row-1);
+						n++;
+						ref[i] = 0;
+					}
+					else
+						break;
+				}
+				// for(i=0;i<=prev;i++)
+				// {
+				// 	ref[i]=0;
+				// }
+				pages[prev][j]=rs[k];
+				prev=(prev+1)%(row-1);
+			}
+		pages[row-1][j]="PF";
+		k++;
+		pf4++;
+		console.log("pf=",pf4);
+        }
+		else
+        {
+        ph++;
+        k++;
+		console.log("ph=",ph);
+		pages[row-1][j]="PH";
+		ref[i] = 1;
+        }
+	}
+txt= " ";var real;var m=0;
+var $table=$("<table border='1'></table>");
+$table.addClass('table table-striped');
+$tbody = $("<tbody></tbody>");
+	for ( i=0; i<row;i++)
+	  {
+        var line =$("<tr></tr>");
+        // line.css({'background-color': getRandomColor()});
+	  	for(j=0; j<col;j++){
+
+        if(i==row-1) {
+
+
+                if(("PH".localeCompare(pages[i][j])==0)){
+					line.append('<td style="color:green">'+'PH'+'</td>');
+                }
+                else{
+					line.append('<td style="color:red">'+'PF'+'</td>');
+				}
+
+			$tbody.append(line);
+
+			}
+        else{
+            line.append($("<td></td>").html(pages[i][j]+""));
+            $tbody.append(line);
+        }
+
+
+          }
+        }
+
+		for(i=0;i<1;i++)
+		{
+			$table.append('<caption style="text-align:center;color:black;text-decoration:underline">'+"<b>SECOND CHANCE TABLE</b>"+'</caption>');
+		  $table.append($tbody);
+		  $table.appendTo($("#div"));
+		  $("#div").append('<p style="text-align:center">'+"<b>The no of page faults is:</b>"+"   "+'<span style="color:red">'+pf4+'</span>'+'</p>');
+		  $("#div").append('<p style="text-align:center">'+"<b>The no of page hits is:</b>"+"   "+'<span style="color:green">'+ph+'</span>'+'</p>')
+		}
+	  function getRandomColor() {
+		m=m+1;
+		var color ='';
+		  if(m==1){
+			  color='blue';
+		  }
+		  if(m==2){
+			  color='yellow';
+		  }
+		  if(m==3){
+			  color='pink';
+		  }
+		  if(m==4){
+			  color='white';
+		  }
+
+		return color;
+		 }
+		 console.log(m);
+
+
+
+$('input[type="button"]').attr('disabled','disabled');
+console.log(txt);
+var chart = new CanvasJS.Chart("chartContainer", {
+	title:{
+		text: "PAGE FAULTS OF ALGORITHMS"
+	},
+	data: [
+	{
+		// Change type to "doughnut", "line", "splineArea", etc.
+		type: "column",
+		dataPoints: [
+			{ label: "FIFO",  y:pf1  },
+			{ label: "OPTIMAL", 	y: pf2  },
+			{ label: "LRU", y:pf3  },
+			{ label: "SECOND_CHANCE", y:pf4  }
+
+		]
+	}
+	]
+});
+chart.render();
+			}
+
+</script>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Producer_Consumer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body style="background-color:#FFE4B5;height:1500px">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">OS simulator</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="index.html">Home</a></li>
+      <li class="active"><a href="#">Wiki</a></li>
+    </ul>
+  </div>
+</nav>
+ <br><br><br>
+  <div class="page-header" >
+
+    <h1 style="background-color:#CCCC00;float:center"><marquee><b>Producer Consumer</b></marquee> </h1>      
+  </div>
+
+  <div>
+      <form>
+        <textarea id="doc" style="height:40%;width:15%;position:absolute;left:3%;font-size:17px; color :black; background-color:#BDB76B  ;border:solid 2px black; " disabled="">
+while(1)
+  {
+      /* produce an item in next_produced */
+
+      while (counter==BUFFER_SIZE)
+        ; /* do nothing */
+
+      buffer[in] = next_produced;
+      in = (in + 1) % BUFFER_SIZE;
+      counter++;
+  }
+        </textarea>
+      </form>
+    </div>
+
+    <div>
+      <form>
+        <textarea id="doc" style="height:40%;width:15%;position:absolute;right:3%;font-size:17px;color : black; background-color:#BDB76B ;border:solid 2px black; " disabled="">
+ while(1)
+  {
+      while(counter == 0)
+        ; /* do nothing */
+
+      next_consumed = buffer[out];
+      out = (out+1) % BUFFER_SIZE;
+      counter--;
+
+      /* consume an item in next_consumed */
+  }
+        </textarea>
+      </form>
+    </div>
+
+
+
+
+
+ <button class="btn btn-primary" id ="prod", type ="button", onclick ="barrieradd()", style ="height:10%;width:15%;position:absolute;top:25%;left:42%;font-size:25px;border:solid 4px black;">Next Chance</button>
+
+<button class="btn btn-primary" id ="prod1", type ="button", style ="height:10%;width:12%;position:absolute;top:80%;left:15%;font-size:25px;background: red;border:solid 4px black;" disabled="">Produce</button>
+
+ <button class="btn btn-primary" id ="con", type ="button", style ="height:10%;width:12%;position:absolute;top:80%;right:15%;font-size:25px;background: red;border:solid 4px black;" disabled="">Consume</button>
+
+
+
+<button class="btn btn-primary" type = "button", id ="num", name = "num", class = "btn btn-primary", style="height:70px;width:300px;position:absolute;top:25%;left:63%;border:solid 4px black;font-size:17px">Press on Produce </button>
+<button class="btn btn-primary" type = "button", id ="num", name = "num", class = "btn btn-primary", style="height:70px;width:300px;position:absolute;top:25%;left:20%;border:solid 4px black;font-size:17px">Buffer size:5 </button>
+
+<button type = "button", id ="one", name = "one", style="height:100px;width:165px;position:absolute;border:solid 4px black;top:50%;left:45%;background-color:white"> </button>
+  
+    <button type = "button", id ="two", name = "two", style="height:100px;width:165px;border:solid 4px black;position:absolute;top:65%;left:45%;background-color:white"> </button>
+  
+    <button type = "button", id ="three", name = "three", style="height:100px;width:165px;border:solid 4px black;position:absolute;top:80%;left:45%;background-color:white"> </button>
+  
+    <button type = "button", id ="four", name = "four", style="height:100px;width:165px;border:solid 4px black;position:absolute;top:95%;left:45%;background-color:white"> </button>
+  
+    <button type = "button", id ="five", name = "five", style="height:100px;width:165px;border:solid 4px black;position:absolute;top:110%;left:45%;background-color:white"> </button>
+
+
+    <button class="btn btn-warning" id ="count", type ="button" style ="height:100px;width:165px;border:solid 4px black;position:absolute;top:38%;left:45%;">counter = 0</button>
+
+   </body>
+
+
+<script type="text/javascript">
+   var queue = [0,0,0,0,0]; var flag=0;
+      var rear =-1; var front =-1;
+
+      function counter()
+      {
+        var counter = rear-front +1;
+       // console.log(rear)
+        if(rear == -1 )
+        {
+          var change = document.getElementById("count");
+          change.innerHTML ="counter = 0"
+        }
+        else if(counter==1)
+        {
+          var change = document.getElementById("count");
+          change.innerHTML ="counter = 1"
+        }
+        if(counter==2)
+        {
+          var change = document.getElementById("count");
+          change.innerHTML ="counter = 2"
+        }
+        if(counter==3)
+        {
+          var change = document.getElementById("count");
+          change.innerHTML ="counter = 3"
+        }
+        if(counter==4)
+        {
+          var change = document.getElementById("count");
+          change.innerHTML ="counter = 4"
+        }
+        if(counter==5)
+        {
+          var change = document.getElementById("count");
+          change.innerHTML ="counter = 5"
+        }
+    }
+
+    function check()
+      {
+        if(flag>0)
+        {
+          document.getElementById("con").disabled = false;
+        }
+        if(flag<4)
+        {
+          document.getElementById("prod1").disabled = false;
+        }
+      }
+
+       function color()
+      {
+        if(queue[0]==1)
+        {
+          document.getElementById("one").style.backgroundColor = '#00BFFF';
+        }
+        if(queue[1]==1)
+        {
+          document.getElementById("two").style.backgroundColor = '#00BFFF';
+        }
+        if(queue[2]==1)
+        {
+          document.getElementById("three").style.backgroundColor = '#00BFFF';
+        }
+        if(queue[3]==1)
+        {
+          document.getElementById("four").style.backgroundColor = '#00BFFF';
+        }
+        if(queue[4]==1)
+        {
+          document.getElementById("five").style.backgroundColor = '#00BFFF';
+        }
+      
+
+        if(queue[0]==0)
+        {
+          document.getElementById("one").style.backgroundColor = '#FFFFFF';
+        }
+        if(queue[1]==0)
+        {
+          document.getElementById("two").style.backgroundColor = '#FFFFFF';
+        }
+        if(queue[2]==0)
+        {
+          document.getElementById("three").style.backgroundColor = '#FFFFFF';
+        }
+        if(queue[3]==0)
+        {
+          document.getElementById("four").style.backgroundColor = '#FFFFFF';
+        }
+        if(queue[4]==0)
+        {
+          document.getElementById("five").style.backgroundColor = '#FFFFFF';
+        }
+   
+        check();
+      }
+
+
+ function produce()
+      {
+        flag++;
+          if(flag==5)
+          {
+            document.getElementById("prod1").disabled = true;
+          }
+         // document.getElementById("prod1").style.color=green;
+          if(front == -1 && rear ==-1)
+          {
+            front =0;
+            rear =0;
+            queue[rear] =1;
+          }
+          else
+          {
+              rear = (rear+1)%5;
+              queue[rear]=1;
+          }
+
+        color();
+        counter();
+      }
+
+
+        function consume()
+      {
+        //   myMove();
+        flag--;
+        if(flag==0)
+        {
+          document.getElementById("con").disabled = true;
+        }
+    
+        if(front==rear)
+        {
+          queue[front] =0;
+          front =-1;
+          rear =-1;
+        }
+        else
+        {
+          queue[front]=0;
+          front = (front+1)%5;
+        }
+        color();
+        counter();
+      }
+   function barrieradd()
+      {
+             var n = Math.random();
+              num = Math.floor(n*2);
+
+              if(flag==0 && num==1)
+              {
+                                                  alert("No item to consume for the consumer!");              
+                                    document.getElementById("num").innerHTML = "No item to consume";
+              }
+
+            else if(flag==5 && num==0)
+              {
+
+                                    document.getElementById("num").innerHTML = "buffer Full to produce";
+                    alert("Buffer full can't add the produced item to the buffer!");                                
+              }
+           else if(num==0)
+                  {     
+
+                    document.getElementById("prod1").style.backgroundColor='green';
+           document.getElementById("con").style.backgroundColor='red';
+
+                    document.getElementById("num").innerHTML = "producer";
+              produce();
+            }
+           else
+           {
+          document.getElementById("con").style.backgroundColor='green';
+                document.getElementById("prod1").style.backgroundColor='red';
+
+
+                    document.getElementById("num").innerHTML = "consumer";
+                consume();
+           }
+
+
+      }  
+
+
+      
+
+</script>
+
+   </html>
+
+

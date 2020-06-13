@@ -1,0 +1,38 @@
+Deadlock is the situation in which multiple concurrent threads of execution in a system are blocked permanently because of resource requirements that can never be satisfied.
+
+A typical real-time system has multiple types of resources and multiple concurrent threads of execution contending for these resources. Each thread of execution can acquire multiple resources of various types throughout its lifetime. Potential for deadlocks exist in a system in which the underlying RTOS permits resource sharing among multiple threads of execution.
+
+Single-Instance Resource Deadlock Detection
+The deadlock detection algorithm for systems with a single instance of each resource type, and tasks making resource requests following the single resource request model, is based on the graph theory. The idea is to find cycles in the resource allocation graph, which represents the circular-wait condition, indicating the existence of deadlocks.
+
+The graph has the following properties: 
+
+  1.a circle represents a resource,
+
+  2.a square represents a task or thread of execution,
+
+  3.an arrow going from a task to a resource indicates that the task wants the resource, and
+
+  4.an arrow going from a resource to a task indicates that the task currently holds the resource.
+  
+The alogorithm folows as follows:
+  
+1.Make a list of all the nodes, N, from the graph.
+
+2.Pick a node from N. Create another list, L, initially empty, which is used for the graph traversal.
+
+3.Insert the node into L and check if this node already exists in L. If so, a cycle exists; therefore, a deadlock is detected, and the algorithm terminates. Otherwise, remove the node from N.
+
+4.Check whether any un-traversed outgoing arcs from this node exist. If all of the arcs are traversed, go to step 6.
+
+5.Choose an un-traversed outgoing arc originating from the node and mark the arc as traversed. Follow the chosen arc to the new node and return to step 3.
+
+6.At this stage, a path in the graph terminates, and no deadlocks exist. If more than one entry is in L, remove the last entry from L. If more than one entry remains in L, make the last entry of L the current node and go to step 4.
+
+7.If the list N is not empty, go to step 2. Otherwise, the algorithm terminates, and no deadlocks exist in the system.
+
+
+
+
+  
+ 

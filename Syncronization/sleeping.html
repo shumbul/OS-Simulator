@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Sleeping Barber</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body style="background-color:#FFE4B5;height:1500px">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">OS simulator</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="index.html">Home</a></li>
+      <li class="active"><a href="#">Wiki</a></li>
+    </ul>
+  </div>
+</nav>
+ <br><br><br>
+  <div class="page-header" >
+    <h1 style="background-color:#CCCC00;float:center"><marquee><b>Sleeping Barber</b></marquee></h1>      
+  </div>
+
+  <div>
+      <form>
+        <textarea id="doc" style="height:32%;width:15%;position:absolute;left:3%;font-size:17px; color : black; background-color:#BDB76B ;border:solid 2px black; " disabled="">
+
+def Barber():
+  while true:                  
+    wait(custReady)            
+    wait(accessWRSeats)         
+    numberOfFreeWRSeats += 1    
+    signal(barberReady)        
+    signal(accessWRSeats)       
+    # (Cut hair here.
+        </textarea>
+      </form>
+    </div>
+
+    <div>
+      <form>
+        <textarea id="doc" style="height:32%;width:15%;position:absolute;right:3%;font-size:17px;color : black; background-color:#BDB76B ;border:solid 2px black; " disabled="">
+def Customer():
+    wait(accessWRSeats)         
+    if numberOfFreeWRSeats > 0:
+      numberOfFreeWRSeats -= 1 
+      signal(custReady)        
+      signal(accessWRSeats)    
+      wait(barberReady)        
+      # (Have hair cut here.)
+    else:                       
+          signal(accessWRSeats)    
+      # (Leave without a haircut.)
+        </textarea>
+      </form>
+    </div>
+
+    <button type = "button", id ="room", name = "room", style="height:50%;width:58%;position:absolute;top:45%;border:solid 4px black;left:19%;background-color:     #DCDCDC"> </button>
+
+
+    <button type = "button", id ="mirror", name = "mirror", style="height:30%;width:1%;position:absolute;top:45%;left:19%;border:solid 2px black;background-color:#00BFFF"> </button>
+
+
+
+<img src="http://icons.iconarchive.com/icons/icons8/ios7/512/Hair-Barbers-Chair-icon.png" style="position: absolute;height: 100px;width: 100px; top: 60%;left:23%; "  id="chair">
+
+<img src="http://icons.iconarchive.com/icons/designbolts/free-male-avatars/128/Male-Avatar-Emo-Haircut-icon.png" style="position: absolute;height: 80px;width: 80px; top: 57%;left:24%; visibility: hidden;"  id="cust">
+
+
+     <img src="http://icons.iconarchive.com/icons/martin-berube/people/128/chef-icon.png" style="position: absolute;height: 100px;width: 100px; top: 60%;left:27%; visibility: hidden;"  id="barber">
+  
+
+
+
+
+<img src="http://icons.iconarchive.com/icons/designbolts/free-male-avatars/128/Male-Avatar-Emo-Haircut-icon.png" style="position: absolute;height: 100px;width: 100px; top: 97%;left:35%; visibility: hidden;"  id="one">
+
+
+<img src="http://icons.iconarchive.com/icons/designbolts/free-male-avatars/128/Male-Avatar-Emo-Haircut-icon.png" style="position:absolute;height: 100px;width: 100px; top: 97%;left:40%;visibility: hidden;  "  id="two">
+
+
+<img src="http://icons.iconarchive.com/icons/designbolts/free-male-avatars/128/Male-Avatar-Emo-Haircut-icon.png" style="position:absolute;height: 100px;width: 100px; top: 97%;left:45%; visibility: hidden;"  id="three">
+
+
+<img src="http://icons.iconarchive.com/icons/designbolts/free-male-avatars/128/Male-Avatar-Emo-Haircut-icon.png" style="position:absolute;height: 100px;width: 100px; top: 97%;left:50%;visibility: hidden; "  id="four">
+
+
+<img src="http://icons.iconarchive.com/icons/designbolts/free-male-avatars/128/Male-Avatar-Emo-Haircut-icon.png" style="position: absolute;height:  100px;width: 100px; top: 97%;left:55%; visibility: hidden;"  id="five">
+
+
+
+
+
+    <button class="btn btn-primary" id ="prod", type ="button", onclick ="produce()", style ="height:10%;width:13%;position:absolute;top:20%;left:25%;border:solid 4px black;font-size:25px">Enter</button>
+    <button class="btn btn-primary" id ="con", type ="button", onclick ="exit()", style ="height:10%;width:13%;position:absolute;top:20%;left:55%;border:solid 4px black;font-size:25px" disabled>Exit</button>
+
+    <button class="btn btn-warning" id ="count", type ="button" style ="height:6%;width:13%;position:absolute;top:33%;border:solid 4px black;color:black;left:55%;">waiting = 0</button>
+
+
+    <button class="btn btn-warning" id ="buffer-size", type ="button" style ="height:6%;width:13%;position:absolute;border:solid 4px black;color:black;top:33%;left:25%;">Waiting Seats =5</button>
+
+
+
+ <button type = "button", id ="door", name = "door", style="height:3%;width:10%;position:absolute;top:92%;left:25%;background-color:brown"> </button>
+
+ <button type = "button", id ="curtain", name = "curtain", style="height:44%;width:0.5%;position:absolute;top:45%;left:55%;background-color:#E0E0E0"> </button>
+
+
+
+<img src="http://icons.iconarchive.com/icons/dunedhel/hinode/128/futon-icon.png" style="position: absolute;height: 300px;width: 200px; top: 60%;left:64%; "  id="bed">
+
+<img src="http://icons.iconarchive.com/icons/martin-berube/people/128/chef-icon.png" style="position: absolute;height: 100px;width: 100px; top: 70%;left:66.5%; "  id="Sleep">
+
+
+    <script type = "text/javascript">
+      var queue = [0,0,0,0,0]; var num=0;
+      var rear =-1; 
+      var hc = 0;
+
+      function counter()
+      {
+        var counter = rear +1;
+        console.log(rear)
+        if(rear == -1 )
+        {
+          var change = document.getElementById("count");
+          change.innerHTML ="waiting = 0"
+        }
+        else if(counter==1)
+        {
+          var change = document.getElementById("count");
+          change.innerHTML ="waiting = 1"
+        }
+        if(counter==2)
+        {
+          var change = document.getElementById("count");
+          change.innerHTML ="waiting = 2"
+        }
+        if(counter==3)
+        {
+          var change = document.getElementById("count");
+          change.innerHTML ="waiting = 3"
+        }
+        if(counter==4)
+        {
+          var change = document.getElementById("count");
+          change.innerHTML ="waiting = 4"
+        }
+        if(counter==5)
+        {
+          var change = document.getElementById("count");
+          change.innerHTML ="waiting = 5"
+        }
+      
+
+      }
+
+      function check()
+      {
+        if(hc==1)
+        {
+          document.getElementById("con").disabled = false;
+        }
+        if(num<4)
+        {
+          document.getElementById("prod").disabled = false;
+        }
+      }
+
+      function color()
+      {
+        if(hc == 1)
+        {
+       document.getElementById("cust").style.visibility = 'visible';
+          document.getElementById("barber").style.visibility = 'visible';
+document.getElementById("bed").style.visibility = 'hidden';
+          document.getElementById("Sleep").style.visibility = 'hidden';
+
+
+        }
+        if(hc == 0)
+        {
+          // document.getElementById("cust").style.backgroundColor = '#DC143C'
+          // document.getElementById("barber").style.backgroundColor = '#DCDCDC'
+       document.getElementById("cust").style.visibility = 'hidden';
+          document.getElementById("barber").style.visibility = 'hidden';
+document.getElementById("bed").style.visibility = 'visible';
+          document.getElementById("Sleep").style.visibility = 'visible';
+
+        }
+        if(queue[0]==1)
+        {
+          console.log("hurray")
+          document.getElementById("one").style.visibility = 'visible';
+        }
+        if(queue[1]==1)
+        {
+          document.getElementById("two").style.visibility = 'visible';
+        }
+        if(queue[2]==1)
+        {
+          document.getElementById("three").style.visibility = 'visible';
+        }
+        if(queue[3]==1)
+        {
+          document.getElementById("four").style.visibility = 'visible';
+        }
+        if(queue[4]==1)
+        {
+          document.getElementById("five").style.visibility = 'visible';
+        }
+       
+
+        if(queue[0]==0)
+        {
+          document.getElementById("one").style.visibility = 'hidden';
+        }
+        if(queue[1]==0)
+        {
+          document.getElementById("two").style.visibility = 'hidden';
+        }
+        if(queue[2]==0)
+        {
+          document.getElementById("three").style.visibility = 'hidden';
+        }
+        if(queue[3]==0)
+        {
+          document.getElementById("four").style.visibility = 'hidden';
+        }
+        if(queue[4]==0)
+        {
+          document.getElementById("five").style.visibility = 'hidden';
+        }
+       
+        check();
+      }
+
+      function produce()
+      {
+          num++;
+          if(num==5)
+          {
+            document.getElementById("prod").disabled = true;
+          }
+          if( rear ==-1)
+          {
+        
+            rear =0;
+            queue[rear] =1;
+          }
+          else
+          {
+              rear = (rear+1)%5;
+              queue[rear]=1;
+          }
+
+          if(hc==0)
+          {
+            hc=1;
+            consume();
+          }
+        color();
+        counter();
+
+      }
+
+      function consume()
+      {
+        num--;
+        if(num==0 && hc == 0)
+        {
+          document.getElementById("con").disabled = true;
+        }
+        if(rear==0)
+        {
+         queue[rear]=0;
+          rear =-1;
+        }
+        else
+        {
+          //queue[front]=0;
+          queue[rear]=0;
+          rear--;
+        }
+        color();
+        counter();
+      }
+
+      function exit()
+      {
+        if(hc == 1)
+        {
+          if(rear!=-1)
+          {
+            consume();
+          }
+          else
+          {
+            hc=0;
+            color();
+          }
+          if(hc == 0)
+          {
+            document.getElementById("con").disabled = true;
+          }
+        }
+      }
+    </script>
+
+  </div>
+</body>

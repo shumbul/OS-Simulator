@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<title>OS Simulator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<!--===============================================================================================-->
+<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="css/util.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+    height: 100%;
+    color: #777;
+    line-height: 1.8;
+}
+
+/* Create a Parallax Effect */
+.bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* First image (Logo. Full height) */
+.bgimg-1 {
+    background-image:url("https://images.wallpapersden.com/image/download/ubuntu-glitch_66789_3840x2160.jpg");
+    min-height: 100%;
+}
+/* Second image (Portfolio) */
+.bgimg-2 {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTzxtsev1Gg-Ex6U0yb8_2w6ADJZwlHz_ivkUbS4p-qHcUlwbeX&usqp=CAU");
+    min-height: 400px;
+}
+/* Third image (Contact) */
+.bgimg-3 {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTzxtsev1Gg-Ex6U0yb8_2w6ADJZwlHz_ivkUbS4p-qHcUlwbeX&usqp=CAU");
+    min-height: 400px;
+}
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px)
+{
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+    }
+}
+
+ .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+.title {
+  color: yellow;
+  font-size: 18px;
+}
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+button:hover, a:hover {
+  opacity: 1;
+}
+#myNavbar a
+{
+	color:white;
+	background-color: transparent;
+}
+
+.images img{
+  height: 150px;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="#home" class="w3-bar-item w3-button">HOME</a>
+    <a href="#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> Details About Topics</a>
+    <a href="#portfolio" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> Topics</a>
+    <a href="#contact" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> Team members</a>
+
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="#about" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT Topics</a>
+    <a href="#portfolio" class="w3-bar-item w3-button" onclick="toggleFunction()">Topics</a>
+    <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">Team members</a>
+
+  </div>
+</div>
+
+<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
+  <div class="w3-display-middle" style="white-space:nowrap;">
+    <!-- <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity"><span class="w3-hide-small"></span> </span> -->
+  </div>
+</div>
+
+<!-- Container (About Section) -->
+<div class="w3-content w3-container w3-padding-64" id="about">
+  <h3 class="w3-center">About Topics</h3>
+  <p class="w3-center"><em>Some of the topics are shown here with Short Description.</em></p>
+
+  <!--about 1st topic-->
+  <div class="w3-row">
+    <div class="w3-col m6 w3-center w3-padding-large">
+      <p><b><i class="fa fa-user w3-margin-right"></i><strong style="font-size: 25px">Disc Scheduling</strong></b></p><br>
+      <img src="http://www.cs.iit.edu/~cs561/cs450/disksched/fcfs.bmp"  width="500" height="333">
+    </div>
+    <!-- Hide this text on small devices -->
+    <div class="w3-col m6 w3-hide-small w3-padding-large">
+       <p>Disk scheduling is is done by operating systems to schedule I/O requests arriving for disk. Disk scheduling is also known as I/O scheduling.<br>There are mainly 6 types of Disc scheduling examined here.They are<br>
+        1. FCFS(First Come First Serve)<br> 2. SSTF(shortest seek time first)<br>3. SCAN<br>4. C-SCAN<br>5. LOOK<br>6. C-LOOK<br>
+       All these schedulings are examined and Total Head Movements are Compared.</p>
+    </div>
+  </div>
+
+  <!--2nd topic-->
+   <div class="w3-row">
+     <div class="w3-col m6 w3-center w3-padding-large">
+      <p><b><i class="fa fa-user w3-margin-right"></i><strong style="font-size: 25px">File Allocation</strong></b></p><br>
+      <img src="https://cdn-images-1.medium.com/max/670/1*wPqqYFfNreXF4INrNhYkeQ.jpeg"  width="500" height="333">
+    </div>
+
+    <div class="w3-col m6 w3-hide-small w3-padding-large" align="w3-right">
+        <p>The allocation methods define how the files are stored in the disk blocks. There are three main disk space or file allocation methods.
+
+    <br>1. Contiguous Allocation
+    <br>2. Linked Allocation
+    <br>3. Indexed Allocation<br><br>
+
+The main idea behind these methods is to provide:
+
+   <strong> Efficient disk space utilization</strong>,
+   <strong> Fast access to the file blocks.</strong>
+ </p>
+
+    </div>
+  </div>
+
+  <!--3rd topic-->
+   <div class="w3-row">
+     <div class="w3-col m6 w3-center w3-padding-large">
+      <p><b><i class="fa fa-user w3-margin-right"></i><strong style="font-size: 25px">Deadlock</strong></b></p><br>
+      <img src="https://cs.nyu.edu/courses/spring03/V22.0202-002/figs/resource-alloc.png" align="left" alt="Photo of Me" width="500" height="333">
+    </div>
+
+    <div class="w3-col m6 w3-hide-small w3-padding-large">
+      <p>Deadlock is a situation where a set of processes are blocked because each process is holding a resource and waiting for another resource acquired by some other process.<br>
+	    Two ways to avoid deadlocks :<br> 1. Prevention <br> 2. Detection <br>
+	    Banker's algorithm is used to avoid deadlock, Single instance algorithm is used for deadlock detection</p>
+    </div>
+  </div>
+  <!--4th topic-->
+   <div class="w3-row">
+     <div class="w3-col m6 w3-center w3-padding-large">
+      <p><b><i class="fa fa-user w3-margin-right"></i><strong style="font-size: 25px">Process Scheduling</strong></b></p><br>
+      <img src="https://www.tutorialspoint.com/operating_system/images/queuing_diagram.jpg" align="left" alt="Photo of Me" width="500" height="333">
+    </div>
+
+    <div class="w3-col m6 w3-hide-small w3-padding-large">
+      <p>Following algorithms are implemented for process scheduling</p>
+      <li>
+         		<strong style="font-family: inherit;">FCFS</strong><br>  </li>
+          <li>      		<strong style="font-family: inherit;">SJF Preemptive</strong><br> </li>
+         	<li>	<strong style="font-family: inherit;">SJF Non Preemptive</strong><br>
+         	</li>
+   	     <li>
+         		<strong style="font-family: inherit;">LJF</strong><br>  </li>
+   	     <li>
+         		<strong style="font-family: inherit;">LRTF</strong><br>  </li>
+            <li>
+               <strong style="font-family: inherit;">Priority Preemptive</strong><br>  </li>
+               <li>
+                   <strong style="font-family: inherit;">Priority Non Preemptive</strong><br>  </li>
+                   <li>
+                       <strong style="font-family: inherit;">Round Robin Scheduling</strong><br>  </li>
+                       <li>
+                           <strong style="font-family: inherit;">Highest Response Ratio Next</strong><br>  </li>
+
+    </div>
+  </div>
+
+
+ <div class="w3-row">
+     <div class="w3-col m6 w3-center w3-padding-large">
+      <p><b><i class="fa fa-user w3-margin-right"></i><strong style="font-size: 25px">Synchronization</strong></b></p><br>
+      <img src="data:image/jpeg;base64,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/TVC1KRqsQz4q/PmvbWtzLMxWTQYoGKBigrpApApApApApApApApApApApApApApApApApApApApApApApApApBNIFIFIFIFIFIKJR2Xeo/0Ra94W9EPyUX+Bn2QpHZlk/Hb3z9V+lWBSCKQTSCqkQpApApApApApApApApApApApApApApApApApApApApApApBNIFIFIFIMfiM/KhmlDcjFG+QN8cWl1e2kGkg108Wngme8at+sMTWMAZExjpGl3ZeATh0G9nv36Iq2OMajntijYyTObURO5r8ceUxrgGObHs0WeoJQVcE4+6WKN2Acxmni1Golmkaxw5jHOGzWYn4u57IF7BDS1Fx988unjw5N6jlShpc4PY/SyyNovY1w3APTu6kIdmTrOOnTmZggLo9LyYss93Pm5bY2hoaTXb3PoFAk0J2WZ5p35rcnlLIOW0aRxlflbHOkbeMjYwWXFkQcsrc1uwPgqmlI8oXtzY2IzPadXK7mSNYGxaeUMIaWs3PaFAj1uQ0vw+UhfMxrYPyLpI4OYXgODpYWzM/J49KNHfbbrvQdBSIqpApApApApApApApApApApApApApApApApApApBNIIpApBNIIpBNIFIIpBNIIIQYGm4HpojceniZ2g8YtApzbxI8KydVeJQXXcMhJDjEzJshnaa3Eh6vvxKC0OCaYYfB4vybOUzsigwAgMrvABO3pKCvT8IgjLSyGNpa4PaQNw4NLA6/HElt+BQXJuHxPEgfExwmrmggHPEANy8aoV6kGq1/krDKWkF0YY0sAYGki3ZFzHOBcx5P5wNorP1HBdPIAHwROAL3bt75Db/Xkeo7+9EXvMIry5bLzEt0Pjtbi13rDQB6kGRSCqkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkCkH//2Q==" align="left" alt="Photo of Me" width="450" height="330">
+    </div>
+
+    <div class="w3-col m6 w3-hide-small w3-padding-large">
+      <p>Process Synchronization means sharing system resources by processes in a such a way that</p>
+	    <p>Concurrent access to shared data is handled thereby minimizing the chance of inconsistent data</p>
+	    <p>Maintaining data consistency demands mechanisms to ensure synchronized execution of cooperating processes.</p>
+	    <p>There are five problems implemented here </p>
+	 <li>
+      		<strong style="font-family: inherit;">Producer Consumer</strong><br>  </li>
+       <li>      		<strong style="font-family: inherit;">Reader writer</strong><br> </li>
+      	<li>	<strong style="font-family: inherit;">Barrier Problem</strong><br>
+      	</li>
+	     <li>
+      		<strong style="font-family: inherit;">Dining Philosopher</strong><br>  </li>
+	     <li>
+      		<strong style="font-family: inherit;">Sleeping Barber</strong><br>  </li>
+	 </div>
+  </div>
+
+   <div class="w3-row">
+     <div class="w3-col m6 w3-center w3-padding-large">
+      <p><b><i class="fa fa-user w3-margin-right"></i><strong style="font-size: 25px">Non-Contiguous Memory Management</strong></b></p><br>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Page_table_actions.svg/440px-Page_table_actions.svg.png" align="left" alt="page alloc" width="450" height="330">
+    </div>
+
+    <div class="w3-col m6 w3-hide-small w3-padding-large">
+      <p>Non-Contiguous memory management has been implemented with the following topics<br>Simulations of
+      paging concepts and the page replacement concepts are implemented </p>
+      <li>
+        <strong style="font-family: inherit;">Page-Replacement</strong><br>  </li>
+     <li>      		<strong style="font-family: inherit;">Paging using page table</strong><br> </li>
+      <li>	<strong style="font-family: inherit;">Multilevel</strong><br>
+      </li>
+    </div>
+  </div>
+
+  <div class="w3-row">
+     <div class="w3-col m6 w3-center w3-padding-large">
+      <p><b><i class="fa fa-user w3-margin-right"></i><strong style="font-size: 25px">MFT and MVT</strong></b></p><br>
+      <img src="http://www.cs.nott.ac.uk/~pszgxk/courses/g53ops/images/OS-MFT.jpg" align="left" alt="page alloc" width="450" height="330">
+    </div>
+
+    <div class="w3-col m6 w3-hide-small w3-padding-large">
+      <h4>Multiprogramming with Fixed Tasks (MFT)</h4>
+      <ul>
+      <li>Memory is divided into several fixed-size partitions</li>
+      <li>Each partition may contain exactly one process/task</li>
+      </ul>
+      <h4>Multiprogramming with Variable Tasks (MVT)</h4>
+      <ul>
+      <li>Partitions of variable length and number</li>
+      <li>When a process is brought into main memory, it is allocated exactly as much memory as it requires</li>
+      </ul>
+    </div>
+  </div>
+
+
+</div>
+
+
+<div class="bgimg-2 w3-display-container w3-opacity-min">
+  <div class="w3-display-middle">
+    <span class="w3-xxlarge w3-text-white w3-wide">TOPICS</span>
+  </div>
+</div>
+
+<div class="w3-content w3-container w3-padding-64" id="portfolio">
+  <h3 class="w3-center">Below are the topics to SIMULATE</h3>
+  <p class="w3-center"><em>Here are the essential topics<br> Click on the images to simulate the respective topic</em></p><br>
+
+
+  <div class="images">
+  <div class="w3-row-padding w3-center">
+    <div class="w3-col m3">
+      		<p><strong>Process Scheduling</strong></p>
+      <a href="Scheduling/index.html"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSvdrH0oW8nywT9FgDsoKPORM0WQFG6knidbIq728x7KqqKcjbd&usqp=CAU" style="width:120px" class="w3-hover-opacity" alt="Process Scheduling"></a>
+    </div>
+
+     <div class="w3-col m3">
+      		<p><strong>Deadlocks</strong></p>
+      <a href="Deadlock/index.html"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQPeAEiRDnDq5tUy7u9_GfH-Xu4msowWYjWGBZPpFBa08CF2t0Z&usqp=CAU" style="width:100px " class="w3-hover-opacity" alt="Deadlocks"></a>
+    </div>
+
+    <div class="w3-col m3">
+      		<p><strong>Disc Scheduling</strong></p>
+      <a href="disk/disk_scheduling.html"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQNIISIvQ9AbGlETP2gIeANrodAe5tTUGRQHGmRxFmADU1sRhRP&usqp=CAU" style="width:140px " class="w3-hover-opacity" alt="disc Scheduling" style="width:140px " class="w3-hover-opacity" alt="disc Scheduling"></a>
+    </div>
+
+    <div class="w3-col m3">
+          <p><strong>Synchronization</strong></p>
+      <a href="Syncronization/index.html"> <img src="https://www.handybackup.net/images/icons/synchronize-folders-200.png" style="width:100px " class="w3-hover-opacity" alt="file allocation"></a>
+    </div>
+
+    <div class="w3-col m3">
+          <p><strong>MFT and MVT</strong></p>
+      <a href="memory/index.html"> <img src="http://arcbotics.com/wp-content/uploads/2016/09/21.Memory-management-250x250.png" style="width:150px " class="w3-hover-opacity" alt="Memory Management(MFT and MVT)"></a>
+    </div>
+
+     <div class="w3-col m3">
+          <p><strong>Non-Contiguous Memory Management</strong></p>
+      <a href="OS-final/index.html"> <img src="data:image/jpeg;base64,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" alt="file allocation"></a>
+    </div>
+
+    <div class="w3-col m3">
+          <p><strong>File allocation</strong></p>
+      <a href="file-allocation/index_page.html"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTXODFaDNAHN2EJ4oY7gquTTHJgeLqjFg_1sbwfnolCYksVSXOC&usqp=CAU" style="width:220px " class="w3-hover-opacity" alt="file allocation"></a>
+    </div>
+
+  </div>
+  </div>
+</div>
+
+<!-- Modal for full size images on click-->
+<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+  <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
+  <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+    <img id="img01" class="w3-image">
+    <p id="caption" class="w3-opacity w3-large"></p>
+  </div>
+</div>
+
+<!-- Third Parallax Image with Portfolio Text -->
+<div class="bgimg-3 w3-display-container w3-opacity-min">
+  <div class="w3-display-middle">
+     <span class="w3-xxlarge w3-text-black w3-wide">TEAM MEMBERS</span>
+  </div>
+</div>
+
+<div class="limiter", id="contact">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100 ver1 m-b-110">
+					<table data-vertable="ver1">
+						<thead>
+							<tr class="row100 head">
+								<th class="column100 column1" data-column="column1">Member Name</th>
+								<th class="column100 column2" data-column="column2">Roll Number</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Shrvan Rajendra Warke 	</td>
+								<td class="column100 column2" data-column="column2">181CO151</td>
+
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Shumbul Arifa  </td>
+								<td class="column100 column2" data-column="column2">181CO152</td>
+
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Srikrishna Ganapati Yaji 	</td>
+								<td class="column100 column2" data-column="column2">181CO153</td>
+
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Sukruth N Bhat 	</td>
+								<td class="column100 column2" data-column="column2">181CO154</td>
+
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">	Swathi J S 	</td>
+								<td class="column100 column2" data-column="column2">181CO155</td>
+
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Trivedi Naman Manishbhai   </td>
+								<td class="column100 column2" data-column="column2">181CO156</td>
+
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">	Vajinepalli VSS Deepak</td>
+								<td class="column100 column2" data-column="column2">181CO157</td>
+
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Videh Raj Nema</td>
+								<td class="column100 column2" data-column="column2">181CO158</td>
+
+							</tr>
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">	Vivek Kumar </td>
+								<td class="column100 column2" data-column="column2">181CO159</td>
+
+							</tr>
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Yash Kumar 	 </td>
+								<td class="column100 column2" data-column="column2">181CO160</td>
+
+							</tr>
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Awanit Ranjan</td>
+								<td class="column100 column2" data-column="column2">181CO161</td>
+
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+
+
+
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+	<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top  </a>
+  <p> <a href="https://www.w3schools.com/w3css/default.asp" title="CSE" target="_blank" class="w3-hover-text-green"> OS Simulator version 1.0.1</a></p>
+</footer>
+
+<!-- Add Google Maps -->
+<script>
+function myMap()
+{
+  myCenter=new google.maps.LatLng(41.878114, -87.629798);
+  var mapOptions= {
+    center:myCenter,
+    zoom:12, scrollwheel: false, draggable: false,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
+  var marker = new google.maps.Marker({
+    position: myCenter,
+  });
+  marker.setMap(map);
+}
+
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-black";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
+    }
+}
+
+function toggleFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,202 @@
+<html>
+
+
+<head>
+
+<style type="text/css">
+.header{position:relative;overflow:hidden;max-height:350px;display:flex;align-items:center;justify-content:center}
+.text{
+    /*-webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2; */
+    margin-top:15px;
+}
+.statistics > p{margin-bottom:2px;right:10%;position: absolute;top:70% ;}
+.statistics > p > span.label{ right:10%;position: absolute;top:70% ; background-color:white;color:gray;}
+.side{background:#fafafa;padding-top:15px}
+.side > img { margin-bottom:15px;}
+.semi-title{font-weight: bold;margin-top:30px;}
+.title{
+    position: absolute;
+    bottom: 45px;
+    padding: 7px;
+    right: 25px;
+    padding-left: 25px;
+    padding-right: 30px;
+    color: white;
+    background: rgba(0,0,0,0.5);
+}
+.sub-title{
+    position: absolute;
+    bottom: 94px;
+    padding: 7px;
+    right: 25px;
+    padding-left: 12px;
+    padding-right: 12px;
+    color: orange;
+    background: rgba(0,0,0,0.7);
+}
+.name-author{
+    position: absolute;
+    bottom: 0px;
+    left: 20px;
+        top:103%;
+
+    font-size: 18px;
+    color: black;
+    padding: 2px;
+    padding-right: 10px;
+    padding-left: 22px;
+    margin-left: -21px;
+    z-index: 1;
+    font-weight: 500;
+}
+.photo-author{
+    max-height: 150px;
+    padding: 2px;
+    position: absolute;
+    left: 25px;
+    top:88%;
+    background: white;
+    z-index: 3;
+}
+.triangulo{
+    position:absolute;
+    top:102%;
+    left:0px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 60px 0 0 1200px;
+    border-color: transparent transparent transparent #ffffff;
+}
+.row-eq-height {
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+}
+@media (max-width: 426px) {
+    .header{
+            margin-left: -15px;
+            margin-top: -15px;
+            margin-right: -15px;
+    }
+    .title{
+        font-size:15px;
+        bottom:-12px;
+        right:0px;
+        padding-left:10px;
+        padding-right:10px;
+    }
+    .photo-author{
+        max-height:80px;
+        left:5px;
+        bottom:0px;
+    }
+    .name-author{
+        font-size:9px;
+        margin-left:-63px;
+        bottom:44px;
+    }
+    .sub-title{
+        right:0px;
+        bottom:0px;
+        padding:5px;
+        font-size:10px;
+    }
+}
+</style>
+  <title>Wiki</title>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">OS simulator</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+    </ul>
+  </div>
+</nav>
+<!-- <div class="container">
+ --><!--   <div class="row">
+ -->     <!-- HEADER -->
+<!--         <div class="header">
+ -->            <img style="width:100%" src="data:image/jpeg;base64,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" />
+            <div class="triangulo"></div>
+            <div class="profile">
+               <!--  <img class="photo-author img-circle" src="" />
+                <span class="name-author"></span> -->
+            </div>
+            <h1 class="sub-title">Process Syncronisation</h1>
+            <!-- <h2 class="title"> </h2> -->
+<!--         </div>
+ -->
+
+     <div class="page-header" >
+    <h1 style="float:center">Barrier Semaphore</h1>
+  </div>
+        <!-- INFO -->
+<!--         <div class="row">
+ -->            <div class="col-xs-12">
+                <h4 style="line-height: 25px;"></h4>
+<!--             </div>
+ -->        </div>
+<!--         <div class="row row-eq-height" style="padding-right:15px">
+ --><!--             <div class="col-xs-12 text">
+ -->                <p class="semi-title">Process Synchronization means sharing system resources by processes in a such a way that,</p>
+                <p class="semi-title"> Concurrent access to shared data is handled thereby minimizing the chance of inconsistent data.</p>
+                <p class="semi-title"> Maintaining data consistency demands mechanisms to ensure synchronized execution of cooperating processes.</p>
+
+<p class="semi-title"></p>
+                                            <p>Process Synchronization was introduced to handle problems that arose while multiple process executions.</p>
+                                            <p>Data Structures used for Synchronization:</p>
+<p class="semi-title">Dinning Philosopher</p>
+                <p>
+
+The problem consists of five philosophers sitting around a circular table.</p>
+<p> The table has five forks. At any instance, a philosopher is eating or thinking.</p>
+<p> When a philosopher wants to eat, he has to use two forks, one from his left and one from his right.</p>
+<p> When a philosopher starts thinking, he keeps the two forks on the table. </p>
+<p> So, philosopher requires the two forks(shared resource) to start eating.  </p>
+
+<!-- <p> Elaborate the code....</p> -->
+<!--             </div>
+ -->            <!-- Sidebar // advertising -->
+
+<!--              </div>
+ -->
+<div style="top:120%;right: 0%;position: absolute;background: #e0e0e0;">
+
+<!-- <h1>If needed add somethings here</h1>
+<p> or else delete this division</p> -->
+<!-- 
+        <small>
+
+                <p style="margin-bottom:0px;margin-top:25px;"><b>Noticias importantes</b></p>
+                <ul class="list-group">
+                    <li class="list-group-item"><big><b>1.</b></big> </li>
+                    <li class="list-group-item"><big><b>2.</b></big> in</li>
+                    <li class="list-group-item"><big><b>3.</b></big> M</li>
+                    <li class="list-group-item"><big><b>4.</b></big> P</li>
+                    <li class="list-group-item"><big><b>5.</b></big> </li>
+                </ul>
+                </small> -->
+</div>
+<!--          </div>
+ -->
+     </div>
+
+ </body>
+</html>
